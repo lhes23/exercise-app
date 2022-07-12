@@ -1,14 +1,19 @@
 import React from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import NavBar from "./components/NavBar";
 import WorkoutForm from "./components/WorkoutForm";
-import WorkoutLists from "./components/WorkoutLists";
+import Home from "./pages/Home";
 
 function App() {
   return (
-    <div className="App">
+    <div className="container">
       <h1 className="text-2xl">Hello World</h1>
-      <WorkoutForm />
-      <WorkoutLists />
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/workouts/add" element={<WorkoutForm />} />
+      </Routes>
     </div>
   );
 }
