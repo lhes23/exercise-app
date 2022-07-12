@@ -20,7 +20,15 @@ export const AddWorkout = async (req: Request, res: Response) => {
   }
 };
 
-export const getWorkout = async (req: Request, res: Response) => {};
+export const getWorkout = async (req: Request, res: Response) => {
+  try {
+    const _id = req.params.id;
+    const workout = await Workout.find({ _id });
+    return res.status(201).json({ workout });
+  } catch (error) {
+    return res.status(401).json({ error });
+  }
+};
 
 export const updateWorkout = async (req: Request, res: Response) => {};
 
