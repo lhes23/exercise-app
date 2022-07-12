@@ -12,7 +12,12 @@ export const getAllWorkouts = async (req: Request, res: Response) => {
 
 export const AddWorkout = async (req: Request, res: Response) => {
   try {
-  } catch (error) {}
+    const { title, reps, load } = req.body;
+    const workout = await Workout.create({ title, reps, load });
+    return res.status(201).json({ workout });
+  } catch (error) {
+    return res.status(401).json({ error });
+  }
 };
 
 export const getWorkout = async (req: Request, res: Response) => {};
