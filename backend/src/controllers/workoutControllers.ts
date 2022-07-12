@@ -4,7 +4,7 @@ import Workout from "../models/workoutModels";
 export const getAllWorkouts = async (req: Request, res: Response) => {
   try {
     const workouts = await Workout.find().sort({ createdAt: -1 });
-    return res.status(200).json(workouts);
+    return res.status(200).json({ workouts });
   } catch (error: any) {
     return res.status(400).json({ error: error.message });
   }
