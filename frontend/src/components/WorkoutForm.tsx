@@ -6,9 +6,22 @@ const WorkoutForm = (props: Props) => {
   const [reps, setReps] = useState<number>(0);
   const [load, setLoad] = useState<number>(0);
 
-  const submitFormHandler = (event: FormEvent<HTMLFormElement>): void => {
+  const submitFormHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(title);
+
+    const res = await fetch("http://localhost:5000/api/workouts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title, reps, load }),
+    });
+    if (res.status > 300) {
+      console.log(`error`);
+    } else {
+      console.log(`Success`);
+      setTitle("");
+      setReps(0);
+      setLoad(0);
+    }
   };
 
   return (
@@ -21,9 +34,10 @@ const WorkoutForm = (props: Props) => {
             name="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            autoFocus
           />
         </div>
-        {/* <div className="">
+        <div className="">
           Reps:
           <input
             type="number"
@@ -40,7 +54,7 @@ const WorkoutForm = (props: Props) => {
             value={load}
             onChange={(e) => setLoad(Number(e.target.value))}
           />
-        </div> */}
+        </div>
         <div className="">
           <input type="submit" value="Submit" className="p-2 bg-red-400" />
         </div>
