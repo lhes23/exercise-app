@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
+import { addWorkout } from "../api/workoutsApi";
 
-type Props = {};
-const WorkoutForm = (props: Props) => {
+const WorkoutForm = () => {
   const [title, setTitle] = useState<string>("");
   const [reps, setReps] = useState<number>(0);
   const [load, setLoad] = useState<number>(0);
@@ -9,13 +9,9 @@ const WorkoutForm = (props: Props) => {
   const submitFormHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const res = await fetch("http://localhost:5000/api/workouts", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title, reps, load }),
-    });
+    const res = await addWorkout({ title, reps, load });
     if (res.status > 300) {
-      console.log(`error`);
+      console.log(res.statusText);
     } else {
       console.log(`Success`);
       setTitle("");
