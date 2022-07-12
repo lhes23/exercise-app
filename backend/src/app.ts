@@ -5,6 +5,7 @@ import cors from "cors";
 import dbConnect from "./db";
 import { errorHandler, httpErrorHandler } from "./errorHandlers";
 import indexRoutes from "./routes/indexRoutes";
+import workoutRoutes from "./routes/workoutRoutes";
 
 // Initialize App
 config();
@@ -17,7 +18,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 // Routes
-app.use("/", indexRoutes);
+app.use(indexRoutes);
+app.use("/api/workouts", workoutRoutes);
 
 // Error Handlers
 app.use(errorHandler);
