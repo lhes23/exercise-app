@@ -8,10 +8,24 @@ export interface IBodyWithId extends IBody {
   _id: string;
 }
 
+export interface IWorkout {
+  workout: IBodyWithId;
+}
+
+export interface IWorkouts {
+  workouts: IBodyWithId[];
+}
+
 const url = "http://localhost:5000/api/workouts";
 
 export const getAllWorkouts = async () => {
-  return await fetch(url);
+  // return await ;
+  const res = await fetch(url);
+  if (!res.ok) {
+    return res.statusText;
+  }
+  const data = await res.json();
+  return data.workouts;
 };
 
 export const addWorkout = async ({ title, reps, load }: IBody) => {

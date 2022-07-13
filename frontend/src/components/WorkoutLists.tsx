@@ -1,26 +1,14 @@
-import { useEffect, useState } from "react";
-import { getAllWorkouts, IBodyWithId } from "../api/workoutsApi";
+import { Link } from "react-router-dom";
+import { getAllWorkouts, IBodyWithId, IWorkouts } from "../api/workoutsApi";
+import WorkoutDetails from "./WorkoutDetails";
 
-const WorkoutLists = () => {
-  const [workouts, setWorkouts] = useState<IBodyWithId[]>([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await getAllWorkouts();
-      if (res.status > 300) {
-        return console.log(res.statusText);
-      }
-      const data = await res.json();
-      //   console.log(data.workouts);
-      setWorkouts(data.workouts);
-    };
-
-    fetchData();
-  }, [workouts]);
-
+const WorkoutLists = ({ workouts }: IWorkouts) => {
   return (
-    <div>
-      {workouts?.map((workout) => (
-        <div key={workout._id}>{workout.title}</div>
+    <div className="">
+      {workouts?.map((workout: IBodyWithId) => (
+        <div key={workout._id}>
+          <WorkoutDetails workout={workout} />
+        </div>
       ))}
     </div>
   );
