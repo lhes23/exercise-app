@@ -4,16 +4,28 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+import { WorkoutContexts } from "./context/WorkoutContexts";
+import { IBodyWithId } from "./interfaces/WorkoutInterfaces";
+
+const value: IBodyWithId = {
+  _id: "",
+  title: "",
+  reps: 0,
+  load: 0,
+  createdAt: "",
+};
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <BrowserRouter>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </BrowserRouter>
+  <WorkoutContexts.Provider value={value}>
+    <BrowserRouter>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </BrowserRouter>
+  </WorkoutContexts.Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
