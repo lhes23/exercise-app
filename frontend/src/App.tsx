@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="container">
       <h1 className="text-2xl">Exercise App</h1>
-      <NavBar />
+      {/* <NavBar /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/workouts/add" element={<AddWorkoutPage />} />

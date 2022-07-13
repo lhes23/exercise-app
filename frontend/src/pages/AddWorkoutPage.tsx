@@ -3,7 +3,9 @@ import WorkoutForm from "../components/WorkoutForm";
 const AddWorkoutPage = () => {
   return (
     <div>
-      <h1>Add Workout</h1>
+      <div className="space-y-2 col-span-full lg:col-span-1 text-center">
+        <p className="font-medium">Add New Workout</p>
+      </div>
       <WorkoutForm />
     </div>
   );

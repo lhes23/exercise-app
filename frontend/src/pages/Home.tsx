@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllWorkouts, IBodyWithId } from "../api/workoutsApi";
 import WorkoutDetails from "../components/WorkoutDetails";
+import WorkoutForm from "../components/WorkoutForm";
 import WorkoutLists from "../components/WorkoutLists";
 
 export const dummy_workouts = [{ _id: "2", title: "test", reps: 30, load: 10 }];
@@ -20,14 +21,12 @@ const Home = () => {
 
   return (
     <div className="">
-      <h1>Home</h1>
-      <div className="">
+      {/* <div className="space-y-2 col-span-full lg:col-span-1 text-center">
+        <p className="font-medium">Home Page</p>
+      </div> */}
+      <div className="col-span-full grid md:grid-cols-2">
         <WorkoutLists workouts={workouts} />
-        {/* {workouts?.map((workout: IBodyWithId) => (
-          <div key={workout._id}>
-            <WorkoutDetails workout={workout} />
-          </div>
-        ))} */}
+        <WorkoutForm />
       </div>
     </div>
   );

@@ -25,15 +25,12 @@ const WorkoutForm = () => {
 
   return (
     <>
-      <section className="p-6 dark:bg-gray-800 dark:text-gray-50">
+      <section className="p-2 dark:bg-gray-800 dark:text-gray-50">
         <form
           onSubmit={submitFormHandler}
-          className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid"
+          className="container flex flex-col mx-auto"
         >
           <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-900">
-            <div className="space-y-2 col-span-full lg:col-span-1">
-              <p className="font-medium">Add New Workout</p>
-            </div>
             <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
               <div className="col-span-full">
                 <label htmlFor="email" className="text-sm">
