@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { IBodyWithId, IWorkout } from "../api/workoutsApi";
+import { IWorkout } from "../interfaces/WorkoutInterfaces";
 
 const WorkoutDetails = ({ workout }: IWorkout) => {
   return (

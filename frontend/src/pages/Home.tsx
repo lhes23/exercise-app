@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { getAllWorkouts, IBodyWithId } from "../api/workoutsApi";
-import WorkoutDetails from "../components/WorkoutDetails";
+import { IBodyWithId } from "../interfaces/WorkoutInterfaces";
 import WorkoutForm from "../components/WorkoutForm";
 import WorkoutLists from "../components/WorkoutLists";
+import { getAllWorkouts } from "../api/workoutsApi";
 
 // export const dummy_workouts = [{ _id: "2", title: "test", reps: 30, load: 10 }];
 

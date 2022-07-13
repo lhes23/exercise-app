@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { getAllWorkouts, IBodyWithId, IWorkouts } from "../api/workoutsApi";
+import { IBodyWithId, IWorkouts } from "../interfaces/WorkoutInterfaces";
 import WorkoutDetails from "./WorkoutDetails";
 
 const WorkoutLists = ({ workouts }: IWorkouts) => {
