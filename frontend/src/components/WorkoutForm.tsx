@@ -77,7 +77,7 @@ const WorkoutForm = () => {
               <div className="text-center">
                 <input
                   type="submit"
-                  className="px-8 py-3 font-semibold rounded-full border-2"
+                  className="px-8 py-3 font-semibold rounded-full border-2 hover:bg-fuchsia-400 hover:shadow-xl"
                   value="Submit"
                 />
               </div>
