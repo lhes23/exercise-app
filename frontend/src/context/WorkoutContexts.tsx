@@ -8,9 +8,10 @@ interface IContextProps {
 export const WorkoutContexts = React.createContext({} as IContextProps);
 
 export const WorkoutContextsProvider = ({ children }: any) => {
-  return (
-    <WorkoutContexts.Provider value={value}>
-      {children}
-    </WorkoutContexts.Provider>
-  );
+  return;
+  // (
+  // <WorkoutContexts.Provider value={value}>
+  //   {children}
+  // </WorkoutContexts.Provider>
+  // );
 };
