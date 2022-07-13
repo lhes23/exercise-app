@@ -6,6 +6,7 @@ export interface IBody {
 
 export interface IBodyWithId extends IBody {
   _id: string;
+  createdAt: string;
 }
 
 export interface IWorkout {

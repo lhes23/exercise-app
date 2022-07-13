@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import { addWorkout } from "../api/workoutsApi";
-import { dummy_workouts } from "../pages/Home";
+// import { dummy_workouts } from "../pages/Home";
 
 const WorkoutForm = () => {
   const [title, setTitle] = useState<string>("");
@@ -9,7 +9,7 @@ const WorkoutForm = () => {
 
   const submitFormHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dummy_workouts.push({ _id: String(Math.random()), title, reps, load });
+    // dummy_workouts.push({ _id: String(Math.random()), title, reps, load });
 
     const res = await addWorkout({ title, reps, load });
 
@@ -30,7 +30,7 @@ const WorkoutForm = () => {
           onSubmit={submitFormHandler}
           className="container flex flex-col mx-auto"
         >
-          <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-900">
+          <fieldset className="grid grid-cols gap-6 p-6 rounded-md shadow-sm dark:bg-gray-900">
             <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
               <div className="col-span-full">
                 <label htmlFor="email" className="text-sm">

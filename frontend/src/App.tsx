@@ -9,8 +9,10 @@ import Home from "./pages/Home";
 
 function App() {
   return (
-    <div className="container">
-      <h1 className="text-2xl">Exercise App</h1>
+    <div className="w-full">
+      <div className="p-5 text-center bg-slate-200">
+        <h1 className="text-2x">Exercise App</h1>
+      </div>
       {/* <NavBar /> */}
       <Routes>
         <Route path="/" element={<Home />} />

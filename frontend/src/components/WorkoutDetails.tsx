@@ -5,7 +5,7 @@ import { IBodyWithId, IWorkout } from "../api/workoutsApi";
 const WorkoutDetails = ({ workout }: IWorkout) => {
   return (
     <>
-      <div className="w-full m-2">
+      <div className="m-4 md:m-8">
         <div className="shadow-lg border border-gray-400 lg:border-gray-400 bg-white rounded p-4 flex flex-col justify-between leading-normal">
           <div className="mb-8">
             <div className="text-gray-900 font-bold text-xl mb-2">
@@ -17,6 +17,7 @@ const WorkoutDetails = ({ workout }: IWorkout) => {
             <p>
               <strong>Load (kg):</strong> <span>{workout.load}</span>
             </p>
+            {/* <p>{workout.createdAt</p> */}
           </div>
         </div>
       </div>
