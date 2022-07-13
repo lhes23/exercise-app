@@ -17,7 +17,7 @@ const WorkoutDetails = ({ workout }: IWorkout) => {
             <p>
               <strong>Load (kg):</strong> <span>{workout.load}</span>
             </p>
-            {/* <p>{workout.createdAt</p> */}
+            <p>{workout.createdAt}</p>
           </div>
         </div>
       </div>
