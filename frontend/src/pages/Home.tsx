@@ -21,12 +21,9 @@ const Home = () => {
 
   return (
     <div className="">
-      {/* <div className="space-y-2 col-span-full lg:col-span-1 text-center">
-        <p className="font-medium">Home Page</p>
-      </div> */}
-      <div className="col-span-full grid md:grid-cols-2">
-        <WorkoutLists workouts={workouts} />
+      <div className="col-span-full grid md:grid-cols-3 mx-auto justify-center">
         <WorkoutForm />
+        <WorkoutLists workouts={workouts} />
       </div>
     </div>
   );
