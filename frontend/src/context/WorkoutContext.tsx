@@ -37,7 +37,7 @@ export const workoutReducer = (state: WorkoutState, action: WorkoutAction) => {
       };
     case "ADD_WORKOUT":
       return {
-        workouts: [...state.workouts, action.payload],
+        ...state,
       };
     default:
       return state;
@@ -45,8 +45,10 @@ export const workoutReducer = (state: WorkoutState, action: WorkoutAction) => {
 };
 
 export const WorkoutContextProvider = (children: ReactNode) => {
-  const [state, dispatch] = useReducer(workoutReducer, initialState);
+  // const [state, dispatch] = useReducer(workoutReducer, initialState);
   return (
-    <WorkoutContext.Provider value={state}>{children}</WorkoutContext.Provider>
+    <WorkoutContext.Provider value={initialState}>
+      {children}
+    </WorkoutContext.Provider>
   );
 };
