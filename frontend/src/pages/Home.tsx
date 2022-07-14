@@ -15,9 +15,10 @@ const Home = () => {
     const fetchData = async () => {
       const data = await getAllWorkouts();
       setWorkouts(data);
+      console.log(data);
     };
     fetchData();
-  }, [workouts]);
+  }, []);
 
   return (
     <div className="">
