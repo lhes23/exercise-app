@@ -5,7 +5,8 @@ type WorkoutState = typeof initialState;
 
 type WorkoutAction =
   | { type: "GET_ALL_WORKOUTS"; payload: WorkoutState }
-  | { type: "ADD_WORKOUT"; payload: IBodyWithId };
+  | { type: "ADD_WORKOUT"; payload: IBodyWithId }
+  | { type: "DELETE_WORKOUT"; payload: string };
 
 const initialState: IBodyWithId[] = [
   {
@@ -28,6 +29,8 @@ export const workoutReducer = (state: WorkoutState, action: WorkoutAction) => {
       return (state = action.payload);
     case "ADD_WORKOUT":
       return (state = [...state, action.payload]);
+    case "DELETE_WORKOUT":
+      return state.filter((w) => w._id !== action.payload);
     default:
       return state;
   }
@@ -39,6 +42,7 @@ export const WorkoutContextProvider = ({
   children: ReactNode;
 }) => {
   const [state, dispatch] = useReducer(workoutReducer, initialState);
+  console.log(state);
   return (
     <WorkoutContext.Provider value={{ state, dispatch }}>
       {children}

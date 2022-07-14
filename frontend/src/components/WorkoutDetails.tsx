@@ -1,9 +1,14 @@
+import { useContext } from "react";
 import { deleteWorkout } from "../api/workoutsApi";
+import { WorkoutContext } from "../context/WorkoutContext";
 import { IWorkout } from "../interfaces/WorkoutInterfaces";
 
 const WorkoutDetails = ({ workout }: IWorkout) => {
+  const { dispatch } = useContext(WorkoutContext);
+
   const deleteHandler = async () => {
     const res = await deleteWorkout(workout._id);
+    dispatch({ type: "DELETE_WORKOUT", payload: workout._id });
     if (!res.ok) {
       return console.log("there has been an error deleting");
     }
