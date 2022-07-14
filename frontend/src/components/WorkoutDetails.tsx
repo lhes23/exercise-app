@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
 import { deleteWorkout } from "../api/workoutsApi";
 import { IWorkout } from "../interfaces/WorkoutInterfaces";
 
@@ -27,6 +25,12 @@ const WorkoutDetails = ({ workout }: IWorkout) => {
             <p>{workout.createdAt}</p>
           </div>
           <div className="text-left">
+            <button
+              className="px-8 py-3 font-semibold rounded-full border-2 hover:bg-fuchsia-400 hover:shadow-xl"
+              // onClick={}
+            >
+              Edit
+            </button>
             <button
               className="px-8 py-3 font-semibold rounded-full border-2 hover:bg-fuchsia-400 hover:shadow-xl"
               onClick={deleteHandler}
