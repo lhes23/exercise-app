@@ -1,5 +1,5 @@
 import { type } from "@testing-library/user-event/dist/type";
-import { createContext, ReactNode, useReducer } from "react";
+import { createContext, Dispatch, ReactNode, useReducer } from "react";
 import { IBodyWithId } from "../interfaces/WorkoutInterfaces";
 
 type Workout = {
@@ -10,11 +10,13 @@ type Workout = {
   createdAt: string;
 };
 
-type WorkoutState = {
-  workouts: Workout[];
-};
+// type WorkoutState = {
+//   workouts: Workout[];
+// };
 
-const initialState: WorkoutState = {
+type WorkoutState = typeof initialState;
+
+const initialState = {
   workouts: [
     {
       _id: "1",
@@ -33,24 +35,33 @@ const initialState: WorkoutState = {
   ],
 };
 
-type WorkoutAction = { type: "GET_ALL_WORKOUTS"; payload: WorkoutState[] };
+type WorkoutAction = { type: "GET_ALL_WORKOUTS"; payload: WorkoutState };
 
-export const WorkoutContext = createContext(initialState);
+interface WorkoutContextProvider {
+  children: ReactNode;
+}
+
+export const WorkoutContext = createContext<{
+  state: WorkoutState;
+  dispatch: Dispatch<WorkoutAction>;
+}>({ state: initialState, dispatch: () => {} });
 
 export const workoutReducer = (state: WorkoutState, action: WorkoutAction) => {
   switch (action.type) {
     case "GET_ALL_WORKOUTS":
-    // return (state.workouts = action.payload);
+      return state;
     default:
       return state;
   }
 };
 
-export const WorkoutContextProvider = (
-  children: JSX.Element[] | JSX.Element
-) => {
+export const WorkoutContextProvider = ({
+  children,
+}: WorkoutContextProvider) => {
   const [state, dispatch] = useReducer(workoutReducer, initialState);
   return (
-    <WorkoutContext.Provider value={state}>{children}</WorkoutContext.Provider>
+    <WorkoutContext.Provider value={{ state, dispatch }}>
+      {children}
+    </WorkoutContext.Provider>
   );
 };
