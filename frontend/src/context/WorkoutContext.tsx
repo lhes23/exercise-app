@@ -38,7 +38,7 @@ export const workoutReducer = (state: WorkoutState, action: WorkoutAction) => {
   }
 };
 
-export const WorkoutContextProvider = (children: ReactNode) => {
+export const WorkoutContextProvider = (children: ReactNode[]) => {
   const [state, dispatch] = useReducer(workoutReducer, initialState);
   return (
     <WorkoutContext.Provider value={state}>{children}</WorkoutContext.Provider>
