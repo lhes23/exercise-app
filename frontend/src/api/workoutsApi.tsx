@@ -20,3 +20,11 @@ export const addWorkout = async ({ title, reps, load }: IBody) => {
   });
   return res;
 };
+
+export const deleteWorkout = async (_id: string) => {
+  const res = await fetch(`${url}/${_id}`, {
+    method: "DELETE",
+    // headers: { "Content-Type": "application/json" },
+  });
+  return res;
+};

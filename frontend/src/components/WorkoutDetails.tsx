@@ -1,8 +1,15 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { deleteWorkout } from "../api/workoutsApi";
 import { IWorkout } from "../interfaces/WorkoutInterfaces";
 
 const WorkoutDetails = ({ workout }: IWorkout) => {
+  const deleteHandler = async () => {
+    const res = await deleteWorkout(workout._id);
+    if (!res.ok) {
+      return console.log("there has been an error deleting");
+    }
+  };
   return (
     <>
       <div className="m-4 md:m-8">
@@ -18,6 +25,14 @@ const WorkoutDetails = ({ workout }: IWorkout) => {
               <strong>Load (kg):</strong> <span>{workout.load}</span>
             </p>
             <p>{workout.createdAt}</p>
+          </div>
+          <div className="text-left">
+            <button
+              className="px-8 py-3 font-semibold rounded-full border-2 hover:bg-fuchsia-400 hover:shadow-xl"
+              onClick={deleteHandler}
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>
