@@ -12,9 +12,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <React.StrictMode>
-      {/* <WorkoutContextProvider> */}
-      <App />
-      {/* </WorkoutContextProvider> */}
+      <WorkoutContextProvider>
+        <App />
+      </WorkoutContextProvider>
     </React.StrictMode>
   </BrowserRouter>
 );

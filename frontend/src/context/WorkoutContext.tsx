@@ -16,24 +16,15 @@ type Workout = {
 
 type WorkoutState = typeof initialState;
 
-const initialState = {
-  workouts: [
-    {
-      _id: "1",
-      title: "test1",
-      reps: 0,
-      load: 0,
-      createdAt: "",
-    },
-    {
-      _id: "2",
-      title: "test2",
-      reps: 0,
-      load: 0,
-      createdAt: "",
-    },
-  ],
-};
+const initialState = [
+  {
+    _id: "1",
+    title: "test1",
+    reps: 0,
+    load: 0,
+    createdAt: "",
+  },
+];
 
 type WorkoutAction = { type: "GET_ALL_WORKOUTS"; payload: WorkoutState };
 
@@ -49,7 +40,7 @@ export const WorkoutContext = createContext<{
 export const workoutReducer = (state: WorkoutState, action: WorkoutAction) => {
   switch (action.type) {
     case "GET_ALL_WORKOUTS":
-      return state;
+      return (state = action.payload);
     default:
       return state;
   }

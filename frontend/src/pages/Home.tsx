@@ -1,21 +1,22 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IBodyWithId } from "../interfaces/WorkoutInterfaces";
 import WorkoutForm from "../components/WorkoutForm";
 import WorkoutLists from "../components/WorkoutLists";
 import { getAllWorkouts } from "../api/workoutsApi";
-
-// export const dummy_workouts = [{ _id: "2", title: "test", reps: 30, load: 10 }];
+import { WorkoutContext } from "../context/WorkoutContext";
 
 const Home = () => {
   const [workouts, setWorkouts] = useState<IBodyWithId[]>([]);
-  // const [workouts, setWorkouts] = useState<IBodyWithId[]>(dummy_workouts);
   const [showDetails, setShowDetails] = useState<boolean>(false);
+  const ctx = useContext(WorkoutContext);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getAllWorkouts();
       setWorkouts(data);
-      console.log(data);
+      // console.log(data);
+      console.log(ctx.state);
+      ctx.dispatch({ type: "GET_ALL_WORKOUTS", payload: data });
     };
     fetchData();
   }, []);
