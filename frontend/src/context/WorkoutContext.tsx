@@ -10,27 +10,21 @@ type Workout = {
   createdAt: string;
 };
 
-// type WorkoutState = {
-//   workouts: Workout[];
-// };
-
 type WorkoutState = typeof initialState;
 
-const initialState = [
+type WorkoutAction =
+  | { type: "GET_ALL_WORKOUTS"; payload: WorkoutState }
+  | { type: "ADD_WORKOUT"; payload: Workout };
+
+const initialState: Workout[] = [
   {
-    _id: "1",
-    title: "test1",
+    _id: "",
+    title: "",
     reps: 0,
     load: 0,
     createdAt: "",
   },
 ];
-
-type WorkoutAction = { type: "GET_ALL_WORKOUTS"; payload: WorkoutState };
-
-interface WorkoutContextProvider {
-  children: ReactNode;
-}
 
 export const WorkoutContext = createContext<{
   state: WorkoutState;
@@ -41,6 +35,8 @@ export const workoutReducer = (state: WorkoutState, action: WorkoutAction) => {
   switch (action.type) {
     case "GET_ALL_WORKOUTS":
       return (state = action.payload);
+    case "ADD_WORKOUT":
+      return (state = [...state, action.payload]);
     default:
       return state;
   }
@@ -48,7 +44,9 @@ export const workoutReducer = (state: WorkoutState, action: WorkoutAction) => {
 
 export const WorkoutContextProvider = ({
   children,
-}: WorkoutContextProvider) => {
+}: {
+  children: ReactNode;
+}) => {
   const [state, dispatch] = useReducer(workoutReducer, initialState);
   return (
     <WorkoutContext.Provider value={{ state, dispatch }}>
