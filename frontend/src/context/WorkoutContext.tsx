@@ -1,31 +1,25 @@
 import { createContext, ReactNode, useReducer } from "react";
 
 interface WorkoutState {
-  workouts: {
-    _id: string;
-    title: string;
-    reps: number;
-    load: number;
-    createdAt: string;
-  };
+  _id: string;
+  title: string;
+  reps: number;
+  load: number;
+  createdAt: string;
 }
+
+const initialState: WorkoutState = {
+  _id: "",
+  title: "",
+  reps: 0,
+  load: 0,
+  createdAt: "",
+};
 
 interface WorkoutAction {
   type: "GET_ALL_WORKOUTS" | "ADD_WORKOUT";
   payload: WorkoutState;
 }
-
-const initialState = {
-  workouts: [
-    {
-      _id: "",
-      title: "",
-      reps: 0,
-      load: 0,
-      createdAt: "",
-    },
-  ],
-};
 
 export const WorkoutContext = createContext(initialState);
 
@@ -45,10 +39,8 @@ export const workoutReducer = (state: WorkoutState, action: WorkoutAction) => {
 };
 
 export const WorkoutContextProvider = (children: ReactNode) => {
-  // const [state, dispatch] = useReducer(workoutReducer, initialState);
+  const [state, dispatch] = useReducer(workoutReducer, initialState);
   return (
-    <WorkoutContext.Provider value={initialState}>
-      {children}
-    </WorkoutContext.Provider>
+    <WorkoutContext.Provider value={state}>{children}</WorkoutContext.Provider>
   );
 };
