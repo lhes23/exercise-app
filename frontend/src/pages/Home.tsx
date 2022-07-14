@@ -6,16 +6,15 @@ import { getAllWorkouts } from "../api/workoutsApi";
 import { WorkoutContext } from "../context/WorkoutContext";
 
 const Home = () => {
-  const [workouts, setWorkouts] = useState<IBodyWithId[]>([]);
+  // const [workouts, setWorkouts] = useState<IBodyWithId[]>([]);
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const ctx = useContext(WorkoutContext);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getAllWorkouts();
-      setWorkouts(data);
+      // setWorkouts(data);
       // console.log(data);
-      console.log(ctx.state);
       ctx.dispatch({ type: "GET_ALL_WORKOUTS", payload: data });
     };
     fetchData();
@@ -25,7 +24,7 @@ const Home = () => {
     <div className="">
       <div className="col-span-full grid md:grid-cols-3 mx-auto justify-center">
         <WorkoutForm />
-        <WorkoutLists workouts={workouts} />
+        <WorkoutLists workouts={ctx.state} />
       </div>
     </div>
   );

@@ -1,22 +1,13 @@
-import { type } from "@testing-library/user-event/dist/type";
 import { createContext, Dispatch, ReactNode, useReducer } from "react";
 import { IBodyWithId } from "../interfaces/WorkoutInterfaces";
-
-type Workout = {
-  _id: string;
-  title: string;
-  reps: number;
-  load: number;
-  createdAt: string;
-};
 
 type WorkoutState = typeof initialState;
 
 type WorkoutAction =
   | { type: "GET_ALL_WORKOUTS"; payload: WorkoutState }
-  | { type: "ADD_WORKOUT"; payload: Workout };
+  | { type: "ADD_WORKOUT"; payload: IBodyWithId };
 
-const initialState: Workout[] = [
+const initialState: IBodyWithId[] = [
   {
     _id: "",
     title: "",
