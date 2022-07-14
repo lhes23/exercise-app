@@ -7,8 +7,8 @@ const WorkoutDetails = ({ workout }: IWorkout) => {
   const { dispatch } = useContext(WorkoutContext);
 
   const deleteHandler = async () => {
-    const res = await deleteWorkout(workout._id);
     dispatch({ type: "DELETE_WORKOUT", payload: workout._id });
+    const res = await deleteWorkout(workout._id);
     if (!res.ok) {
       return console.log("there has been an error deleting");
     }
