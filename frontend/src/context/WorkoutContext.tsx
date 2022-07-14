@@ -1,4 +1,4 @@
-import { createContext, Dispatch, ReactNode, useReducer } from "react";
+import { createContext, Dispatch, ReactNode, Reducer, useReducer } from "react";
 import { IBodyWithId } from "../interfaces/WorkoutInterfaces";
 
 type WorkoutState = typeof initialState;
@@ -8,29 +8,44 @@ type WorkoutAction =
   | { type: "ADD_WORKOUT"; payload: IBodyWithId }
   | { type: "DELETE_WORKOUT"; payload: string };
 
-const initialState: IBodyWithId[] = [
-  {
-    _id: "",
-    title: "",
-    reps: 0,
-    load: 0,
-    createdAt: "",
-  },
-];
+// const initialState: IBodyWithId[] = [
+// {
+//   _id: "",
+//   title: "",
+//   reps: 0,
+//   load: 0,
+//   createdAt: "",
+// },
+// ];
+
+const initialState = {
+  workouts: [
+    {
+      _id: "",
+      title: "",
+      reps: 0,
+      load: 0,
+      createdAt: "",
+    },
+  ],
+};
 
 export const WorkoutContext = createContext<{
   state: WorkoutState;
   dispatch: Dispatch<WorkoutAction>;
 }>({ state: initialState, dispatch: () => {} });
 
-export const workoutReducer = (state: WorkoutState, action: WorkoutAction) => {
+const workoutReducer: Reducer<WorkoutState, WorkoutAction> = (
+  state: WorkoutState,
+  action: WorkoutAction
+) => {
   switch (action.type) {
     case "GET_ALL_WORKOUTS":
-      return (state = action.payload);
+      return { workouts: [action.payload, ...state.workouts] };
     case "ADD_WORKOUT":
-      return (state = [...state, action.payload]);
+      return { workouts: [...state.workouts, action.payload] };
     case "DELETE_WORKOUT":
-      return state.filter((w) => w._id !== action.payload);
+      return state.workouts.filter((w) => w._id !== action.payload);
     default:
       return state;
   }

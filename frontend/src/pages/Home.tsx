@@ -5,7 +5,7 @@ import { getAllWorkouts } from "../api/workoutsApi";
 import { WorkoutContext } from "../context/WorkoutContext";
 
 const Home = () => {
-  const { state: workouts, dispatch } = useContext(WorkoutContext);
+  const { state, dispatch } = useContext(WorkoutContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +19,7 @@ const Home = () => {
     <div className="">
       <div className="col-span-full grid md:grid-cols-3 mx-auto justify-center">
         <WorkoutForm />
-        <WorkoutLists workouts={workouts} />
+        <WorkoutLists workouts={state.workouts} />
       </div>
     </div>
   );
