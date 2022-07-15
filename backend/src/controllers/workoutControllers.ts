@@ -14,7 +14,7 @@ export const AddWorkout = async (req: Request, res: Response) => {
   try {
     const { title, reps, load } = req.body;
     const workout = await Workout.create({ title, reps, load });
-    return res.status(200).json(workout);
+    return res.status(200).json({ workout });
   } catch (error: any) {
     return res.status(400).json({ error: error.message });
   }

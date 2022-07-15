@@ -39,33 +39,11 @@ const workoutReducer = (state: WorkoutState, action: WorkoutAction) => {
     case "GET_ALL_WORKOUTS":
       return { workouts: action.payload };
     case "ADD_WORKOUT":
-      return { workouts: [...state.workouts, action.payload] };
+      return { workouts: [action.payload, ...state.workouts] };
     case "DELETE_WORKOUT":
       return {
         workouts: state.workouts.filter((w) => w._id !== action.payload),
       };
-    default:
-      return state;
-  }
-};
-
-/**************** */
-
-type myState = typeof myInitState;
-type myAction = { type: string; payload: number };
-
-const myInitState = {
-  count: 0,
-};
-const myContext = createContext<{
-  state: myState;
-  dispatch: Dispatch<myAction>;
-}>({ state: myInitState, dispatch: () => {} });
-
-const myReducer = (state: myState, action: myAction) => {
-  switch (action.type) {
-    case "SET_DATA":
-      return { count: action.payload };
     default:
       return state;
   }
@@ -77,13 +55,9 @@ export const WorkoutContextProvider = ({
   children: ReactNode;
 }) => {
   const [state, dispatch] = useReducer(workoutReducer, initialState);
-  // const [state, dispatch] = useReducer(myReducer,myInitState);
   return (
     <WorkoutContext.Provider value={{ state, dispatch }}>
       {children}
     </WorkoutContext.Provider>
-    // <myContext.Provider value={{state,dispatch}}>
-    //   {children}
-    // </myContext.Provider>
   );
 };

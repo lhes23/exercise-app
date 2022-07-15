@@ -1,15 +1,12 @@
 import { IBody } from "../interfaces/WorkoutInterfaces";
+import { WorkoutContext } from "../context/WorkoutContext";
+import { useContext } from "react";
 
 const url = "http://localhost:5000/api/workouts";
 
-export const getAllWorkouts = async () => {
-  // return await ;
+export const GetAllWorkouts = async () => {
   const res = await fetch(url);
-  if (!res.ok) {
-    return res.statusText;
-  }
-  const data = await res.json();
-  return data.workouts;
+  return res;
 };
 
 export const addWorkout = async ({ title, reps, load }: IBody) => {

@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import WorkoutForm from "../components/WorkoutForm";
 import WorkoutLists from "../components/WorkoutLists";
-import { getAllWorkouts } from "../api/workoutsApi";
+import { GetAllWorkouts } from "../api/workoutsApi";
 import { WorkoutContext } from "../context/WorkoutContext";
 
 const Home = () => {
@@ -9,11 +9,16 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getAllWorkouts();
-      dispatch({ type: "GET_ALL_WORKOUTS", payload: data });
+      const res = await GetAllWorkouts();
+
+      if (!res.ok) {
+        console.log(res.statusText);
+      }
+      const data = await res.json();
+      dispatch({ type: "GET_ALL_WORKOUTS", payload: data.workouts });
     };
     fetchData();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="">

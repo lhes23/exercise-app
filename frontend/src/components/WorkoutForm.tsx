@@ -1,4 +1,5 @@
 import { FormEvent, useContext, useState } from "react";
+import { json } from "stream/consumers";
 import { addWorkout } from "../api/workoutsApi";
 import { WorkoutContext } from "../context/WorkoutContext";
 
@@ -12,22 +13,12 @@ const WorkoutForm = () => {
     event.preventDefault();
 
     const res = await addWorkout({ title, reps, load });
-    if (res.status > 300) {
+    if (!res.ok) {
       console.log(res.statusText);
-    } else {
-      dispatch({
-        type: "ADD_WORKOUT",
-        payload: {
-          _id: String(Math.random()),
-          title,
-          reps,
-          load,
-          createdAt: "",
-        },
-      });
-
-      dispatch({ type: "GET_ALL_WORKOUTS", payload: state.workouts });
-      console.log(`Success`);
+    }
+    if (res.ok) {
+      const data = await res.json();
+      dispatch({ type: "ADD_WORKOUT", payload: data.workout });
       setTitle("");
       setReps(0);
       setLoad(0);
