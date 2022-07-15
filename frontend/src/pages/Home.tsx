@@ -18,7 +18,7 @@ const Home = () => {
       dispatch({ type: "GET_ALL_WORKOUTS", payload: data.workouts });
     };
     fetchData();
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="">
