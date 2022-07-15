@@ -1,19 +1,17 @@
 import { FormEvent, useContext, useState } from "react";
 import { addWorkout } from "../api/workoutsApi";
 import { WorkoutContext } from "../context/WorkoutContext";
-// import { dummy_workouts } from "../pages/Home";
 
 const WorkoutForm = () => {
   const [title, setTitle] = useState<string>("");
   const [reps, setReps] = useState<number>(0);
   const [load, setLoad] = useState<number>(0);
-  const { dispatch } = useContext(WorkoutContext);
+  const { state, dispatch } = useContext(WorkoutContext);
 
   const submitFormHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const res = await addWorkout({ title, reps, load });
-
     if (res.status > 300) {
       console.log(res.statusText);
     } else {
@@ -27,6 +25,8 @@ const WorkoutForm = () => {
           createdAt: "",
         },
       });
+
+      dispatch({ type: "GET_ALL_WORKOUTS", payload: state.workouts });
       console.log(`Success`);
       setTitle("");
       setReps(0);
